@@ -1,5 +1,6 @@
 package com.evancc.newsreaderapp;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,10 @@ public class NewsActivity extends AppCompatActivity {
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("http://www.google.com");
+
+        Intent intent = this.getIntent();
+        String url = intent.getStringExtra("url");
+        webView.loadUrl(url);
 
 
 
