@@ -78,21 +78,17 @@ public class MainActivity extends AppCompatActivity {
             DownloadTask task = new DownloadTask();
             String topNews = task.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty").get();
             String[] topNewsArray = topNews.split(", ");
-            Log.i("Number of Stories", Integer.toString(topNewsArray.length));
-            //Log.i("New Stories Array", topNewsArray.toString());
 
             JSONArray topStories = new JSONArray();
-            //JSONObject topStories = new JSONObject(topNews);
-            //Log.i("Top News Ids ", topNews);
 
             if (topNewsArray.length > 0 ) {
-                for(int cnt = 1; cnt <= 5; cnt++) {
+                for(int cnt = 1; cnt <= 20; cnt++) {
 
                     String url = "https://hacker-news.firebaseio.com/v0/item/" + topNewsArray[cnt] + ".json?print=pretty";
-                    Log.i("Story URL", url);
+
                     DownloadTask getStory = new DownloadTask();
                     String story = getStory.execute(url).get();
-                    Log.i("Story", story);
+
                     JSONObject currentStory = new JSONObject(story);
                     topStories.put(currentStory);
                     storyItems.add(currentStory.getString("title"));
